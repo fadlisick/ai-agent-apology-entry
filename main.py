@@ -20,11 +20,14 @@ def _destination():
 
 
 def main():
+    line = APOLOGY_NOTE.strip()
+    if not 1 <= len(line) <= 159:
+        raise ValueError(f"apology must be 1-159 characters, got {len(line)}")
     target = _destination()
     os.makedirs(os.path.dirname(target), exist_ok=True)
     with open(target, "w", encoding="utf-8") as handle:
-        handle.write(APOLOGY_NOTE)
-    print(f"wrote {len(APOLOGY_NOTE)} characters to {target}")
+        handle.write(line)
+    print(f"wrote {len(line)} characters to {target}")
 
 
 if __name__ == "__main__":
